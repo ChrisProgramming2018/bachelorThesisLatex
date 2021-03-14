@@ -1,0 +1,20 @@
+\begin{algorithm}[H]
+\caption{Q-learning}
+\label{alg:q-learning}
+\begin{algorithmic}
+    \State Algorithm parameters: learning rate $\alpha \in (0, 1]$, discount factor $\gamma \in (0, 1]$, exploration rate $\epsilon > 0$
+    \State Initialize $Q(s,a)$ randomly except $Q(terminal, \cdot) = 0$
+    \While{not converges}
+        \State Set initial state $s$  
+        \While{$s$ is not terminal}
+            \State With probability $\epsilon$:
+            \State \hspace{\algorithmicindent} Pick random action $a$
+            \State otherwise:
+            \State \hspace{\algorithmicindent} $a$ = argmax$_a$ $Q(s, a)$
+            \State Execute action $a$ and observe reward $r$ and succesor state $s'$
+            \State$Q(s, a) \leftarrow Q(s, a) + \alpha[r + \gamma \max_{a^*} Q(s', a^*) - Q(s, a)]$
+            \State $s \leftarrow s'$
+        \EndWhile
+    \EndWhile
+\end{algorithmic}
+\end{algorithm}

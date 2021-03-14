@@ -1,0 +1,12 @@
+\begin{thebibliography}{1}
+
+\bibitem{muja2009flann}
+M.~Muja and D.~G. Lowe, ``Fast approximate nearest neighbors with automatic
+  algorithm configuration.,'' {\em VISAPP (1)}, vol.~2, no.~331-340, p.~2,
+  2009.
+
+\bibitem{Sutton1998}
+R.~S. Sutton and A.~G. Barto, {\em Reinforcement Learning: An Introduction}.
+\newblock The MIT Press, second~ed., 2018.
+
+\end{thebibliography}
