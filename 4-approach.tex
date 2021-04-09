@@ -1,0 +1,76 @@
+\chapter{Approach}\label{chap:approach}
+
+
+\section{Soft Actor-Critic}
+
+The Soft Actor-Critic Algorithm \cite{haarnoja2018soft} is based on the maximizing entropy objective
+
+\begin{equation}
+\label{eq:maxent_objective}
+  J(\pi)  = \sum_{t=0}^{T} \mathbb{E}(s_{t}, a_{t}) \sim \rho_{pi}[r(s_{t},a_{t}) + \alpha \mathcal{H}(\pi(\cdot|s_{t}))]
+\end{equation}
+
+
+
+
+
+reparameterization trick
+
+
+\section{Truncated Quantile Critics TQC}
+
+For training the agent the algorithm proposed in \cite{} was used.
+
+Estimating a distribution of the Q-value and an ensemble of critics
+enables it to controll  over and under estimation bias  
+
+
+\subsection{Distributional Reinforcement Learning with
+Quantile Regression}
+
+With Distributional Reinforcement Learning the objectiv changes to
+$ Z^{\pi}(s, a) := \sum_{t=0}^{\infty} \gamma^{t} R\left(s_{t}, a_{t}\right)$
+and the Q Function to $Q^{\pi}(s, a):=  \mathbb{E} {Z^{\pi}(s, a)}$.
+In the work QR-DQN % \cite{dabney2018distributional}% 
+the distribution $Z^\pi(s,a)$ is approximated with
+$ Z_{\psi}(s, a):=\frac{1}{M} \sum_{m=1}^{M} \delta ( \theta^{m}_\psi(s, a) )$,
+a mixture of atoms---Dirac delta functions at locations $\theta^1_\psi(s,a), \dots ,\theta^M_\psi(s,a)$ 
+given by a parametric model  $\theta_{\psi}: \mathcal{S} \times \mathcal{A} \rightarrow \mathbb{R}^M$.
+
+
+
+
+
+\begin{equation}
+  Z_{\psi_n}(s, a) := \frac{1}{M} \sum_{m=1}^{M} \delta \left(\theta_{\psi_n}^m(s, a) \right) ,
+\end{equation}
+
+supported on atoms $ \theta_{\psi_n}^1(s,a), \dots, \theta_{\psi_n}^M(s,a) $ 
+
+
+
+
+
+
+\subsection{Loss Function}
+
+The author chooses to use the Wasserstein distance as a metric to minimize 
+the differences between each of the Q-value distribution  
+and the temporal difference target distribution Y (s, a).
+
+\begin{equation}
+  J_Z (\psi_n) = \mathbb{E}_{\mathcal{D}, \pi} \mathcal{L}^k(s_t,a_t; \psi_n)]
+\end{equation}
+
+over the parameters $\psi_n$, where
+
+\begin{equation}
+  \mathcal{L}^k(s,a; \psi_n) = \frac{1}{kNM} \sum_{m=1}^M \sum_{i=1}^{kN} \rho_{ \tau_m}^H(y_i(s, a) - \theta_{\psi_n}^>
+\end{equation}
+
+
+
+The TQC pseudo code is given in Algorithm \ref{alg:main}.   
+
+\input{figures/approach/Tqc.tex}
+
